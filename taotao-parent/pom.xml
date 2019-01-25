@@ -57,6 +57,9 @@
         <dubbo.version>2.5.3</dubbo.version>
         <zookeeper.version>3.4.10</zookeeper.version>
         <zkclient.version>0.1</zkclient.version>
+        <pagehelper.version>5.1.2</pagehelper.version>
+        <jsqlparser.version>0.9.5</jsqlparser.version>
+        <jackson.version>2.9.5</jackson.version>
     </properties>
 
     <!-- 就是管理版本的标签   其下的dependencies标签只是版本的管理 并不依赖jar-->
@@ -179,6 +182,30 @@
                 <version>${zkclient.version}</version>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/net.sf.jsqlparser/jsqlparser -->
+            <!--<dependency>
+                <groupId>net.sf.jsqlparser</groupId>
+                <artifactId>jsqlparser</artifactId>
+                <version>${jsqlparser.version}</version>
+            </dependency>-->
+            <!-- https://mvnrepository.com/artifact/com.github.jsqlparser/jsqlparser -->
+            <dependency>
+                <groupId>com.github.jsqlparser</groupId>
+                <artifactId>jsqlparser</artifactId>
+                <version>${jsqlparser.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
 
 
         </dependencies>

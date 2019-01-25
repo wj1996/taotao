@@ -2,8 +2,7 @@ package com.wj.taotao.service;
 
 import com.wj.taotao.common.pojo.EasyUIDataGridResult;
 
-public interface ITestService {
+public interface IItemService {
 
-    public String queryNow();
-
+    EasyUIDataGridResult getItemList(int page, int rows);
 }
