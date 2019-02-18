@@ -18,10 +18,17 @@
 
     <mvc:default-servlet-handler />
 
+    <!--上传文件-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8" />
+        <property name="maxUploadSize" value="5242880" />
+    </bean>
+
     <!--引入dubbo服务-->
     <dubbo:application name="taotao-manager-web" />
     <dubbo:registry protocol="zookeeper" address="10.0.0.116:2181" />
     <dubbo:reference interface="com.wj.taotao.service.ITestService" id="testService"  />
     <dubbo:reference interface="com.wj.taotao.service.IItemService" id="itemService"  />
     <dubbo:reference interface="com.wj.taotao.content.service.IContentCategoryService" id="contentCategoryService" />
+    <dubbo:reference interface="com.wj.taotao.service.IItemCatService" id="itemCatService" />
 </beans>
