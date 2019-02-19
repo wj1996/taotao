@@ -21,8 +21,8 @@ public class PictureController {
 
     @RequestMapping(value = "pic/upload",produces = MediaType.TEXT_PLAIN_VALUE + ";charset=utf-8")
     @ResponseBody
-    public String fileUpload(MultipartFile multipartFile){
-        String originalFilename = multipartFile.getOriginalFilename();
+    public String fileUpload(MultipartFile uploadFile){
+        String originalFilename = uploadFile.getOriginalFilename();
         String extName = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
         Map resultMap = new HashMap();
         try {

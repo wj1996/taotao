@@ -12,7 +12,7 @@ public class FastDfsClientUtils {
 
     public FastDfsClientUtils(String conf) throws Exception{
         if(conf.contains("classpath")){
-            conf = conf.replace("classpath",this.getClass().getResource("/").getPath());
+            conf = conf.replace("classpath:",this.getClass().getResource("/").getPath());
         }
 
         ClientGlobal.init(conf);
