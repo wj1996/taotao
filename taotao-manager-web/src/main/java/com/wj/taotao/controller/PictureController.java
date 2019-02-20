@@ -16,8 +16,8 @@ import java.util.Map;
 public class PictureController {
 
 
-    @Value("${IMAGE_SERVER_URL}")
-    private String IMAGE_SERVER_URL;
+//    @Value("${IMAGE_SERVER_URL}")
+    private String IMAGE_SERVER_URL = "http://10.0.0.118:8888/";
 
     @RequestMapping(value = "pic/upload",produces = MediaType.TEXT_PLAIN_VALUE + ";charset=utf-8")
     @ResponseBody
@@ -27,7 +27,7 @@ public class PictureController {
         Map resultMap = new HashMap();
         try {
             FastDfsClientUtils fastDfsClientUtils = new FastDfsClientUtils("classpath:fdfs_client.conf");
-            String path = fastDfsClientUtils.uploadFile(originalFilename.getBytes(), extName, null);
+            String path = fastDfsClientUtils.uploadFile(uploadFile.getBytes(), extName, null);
             String url = IMAGE_SERVER_URL + path;
 
             resultMap.put("error",0);
