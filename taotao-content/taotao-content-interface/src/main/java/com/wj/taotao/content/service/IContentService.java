@@ -10,4 +10,6 @@ public interface IContentService {
     List<TbContent> getTbContentList(Long cid);
 
     TaotaoResult saveContent(TbContent tbContent);
+
+    TaotaoResult updateTbContent(TbContent tbContent);
 }

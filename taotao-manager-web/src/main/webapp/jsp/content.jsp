@@ -65,7 +65,7 @@ var contentListToolbar = [{
     		return ;
     	}
 		TT.createWindow({
-			url : "/content-edit",
+			url : "jsp/content-edit.jsp",
 			onLoad : function(){
 				var data = $("#contentList").datagrid("getSelections")[0];
 				$("#contentEditForm").form("load",data);

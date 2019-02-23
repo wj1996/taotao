@@ -60,4 +60,10 @@ public class ContentServiceImpl implements IContentService {
         tbContentMapper.insertSelective(tbContent);
         return TaotaoResult.ok();
     }
+
+    @Override
+    public TaotaoResult updateTbContent(TbContent tbContent) {
+        tbContentMapper.updateByPrimaryKeySelective(tbContent);
+        return TaotaoResult.ok();
+    }
 }
