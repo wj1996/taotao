@@ -32,7 +32,7 @@
     <!-- 切面 -->
     <aop:config>
         <aop:advisor advice-ref="txAdvice"
-                     pointcut="execution(* com.wj.taotao.content.service.*.*(..))" />
+                     pointcut="execution(* com.wj.taotao.search.service.*.*(..))" />
     </aop:config>
 
 </beans>

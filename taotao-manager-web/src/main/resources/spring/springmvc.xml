@@ -32,4 +32,5 @@
     <dubbo:reference interface="com.wj.taotao.content.service.IContentCategoryService" id="contentCategoryService" />
     <dubbo:reference interface="com.wj.taotao.service.IItemCatService" id="itemCatService" />
     <dubbo:reference interface="com.wj.taotao.content.service.IContentService" id="contentService" />
+    <dubbo:reference interface="com.wj.taotao.search.service.ISearchItemService" id="searchItemService" />
 </beans>
