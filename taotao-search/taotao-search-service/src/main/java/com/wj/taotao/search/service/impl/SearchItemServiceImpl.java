@@ -7,9 +7,10 @@ import com.wj.taotao.search.service.ISearchItemService;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class SearchItemServiceImpl implements ISearchItemService {
 
     @Autowired
@@ -21,19 +22,24 @@ public class SearchItemServiceImpl implements ISearchItemService {
     @Override
     public TaotaoResult importAllItems() throws Exception {
         //查询所有商品
-        List<SearchItem> searchItemList = searchItemMapper.getSearchItemList();
-        if(null != searchItemList){
-            for(SearchItem searchItem : searchItemList){
-                SolrInputDocument doc = new SolrInputDocument();
-                doc.addField("id",searchItem.getId());
-                doc.addField("item_title",searchItem.getTitle());
-                doc.addField("item_content",searchItem.getItem_desc());
-                //像索引中添加内容
-                httpSolrClient.add(doc);
+        try{
+            List<SearchItem> searchItemList = searchItemMapper.getSearchItemList();
+            if(null != searchItemList){
+                for(SearchItem searchItem : searchItemList){
+                    SolrInputDocument doc = new SolrInputDocument();
+                    doc.addField("id",searchItem.getId());
+                    doc.addField("item_title",searchItem.getTitle());
+                    doc.addField("item_content",searchItem.getItem_desc());
+                    //像索引中添加内容
+                    httpSolrClient.add(doc);
+                }
             }
+            httpSolrClient.commit();
+            httpSolrClient.close();
+            return TaotaoResult.ok();
+        }catch (Exception e){
+            e.printStackTrace();
+            throw e;
         }
-        httpSolrClient.commit();
-        httpSolrClient.close();
-        return TaotaoResult.ok();
     }
 }

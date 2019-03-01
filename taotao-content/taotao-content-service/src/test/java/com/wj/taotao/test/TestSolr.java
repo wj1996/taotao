@@ -1,3 +1,4 @@
+/*
 package com.wj.taotao.test;
 
 import org.apache.solr.client.solrj.SolrQuery;
@@ -51,3 +52,4 @@ public class TestSolr {
        solrClient.close();
    }
 }
+*/
