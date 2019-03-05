@@ -1,15 +1,20 @@
 package com.wj.taotao.common;
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import java.io.Serializable;
 
 public class SearchItem implements Serializable {
 
+    @Field(value="id")
     private Long id;//商品的id
+    @Field(value = "item_title")
     private String title;//商品标题
     private String sell_point;//商品卖点
     private Long price;//价格
     private String image;//商品图片的路径
     private String category_name;//商品分类名称
+    @Field(value = "item_content")
     private String item_desc;//商品的描述
 
     public Long getId() {

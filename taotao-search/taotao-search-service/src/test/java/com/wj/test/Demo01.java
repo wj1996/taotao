@@ -14,9 +14,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-/**
- * solr 7.7.0 测试
- */
+//solr 7.7.0 测试
+
+
 public class Demo01 {
 
     //add
@@ -67,7 +67,9 @@ public class Demo01 {
     public void testQuery2() throws Exception{
         HttpSolrClient solrClient = new HttpSolrClient.Builder("http://10.0.0.119:8090/solr/collection1").build();
         SolrQuery solrQuery = new SolrQuery();
-        solrQuery.setQuery("item_title:华为手机");
+//        solrQuery.setQuery("item_title:华为手机");
+        solrQuery.setQuery("手机");
+        solrQuery.set("df","item_title");
         //开启高亮显示
         solrQuery.setHighlight(true);
         //高亮显示的域

@@ -13,5 +13,13 @@
     <bean id="httpSolrClient" class="org.apache.solr.client.solrj.impl.HttpSolrClient">
         <constructor-arg value="http://10.0.0.119:8090/solr/collection1" />
     </bean>
+    <!--
+        <bean id="solrClient" class="org.apache.solr.client.solrj.impl.ConcurrentUpdateSolrClient">
+            <constructor-arg value="http://10.0.0.119:8090/solr/collection1" />
+        </bean>-->
+
+   <!-- <bean id="httpSolrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+        <constructor-arg value="http://10.0.0.121:9080/solr" />
+    </bean>-->
 
 </beans>
