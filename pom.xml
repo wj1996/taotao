@@ -79,6 +79,7 @@
         <solr-solrj.version>7.7.0</solr-solrj.version>
         <!--7.7.0  4.10.3-->
         <activemq.version>5.13.0</activemq.version>
+        <freemarker.version>2.3.23</freemarker.version>
     </properties>
 
     <!-- 就是管理版本的标签   其下的dependencies标签只是版本的管理 并不依赖jar-->
@@ -271,6 +272,13 @@
                 <artifactId>activemq-all</artifactId>
                 <version>${activemq.version}</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
