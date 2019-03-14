@@ -12,8 +12,11 @@ import com.wj.taotao.pojo.TbItemDesc;
 import com.wj.taotao.pojo.TbItemExample;
 import com.wj.taotao.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 
+import javax.jms.*;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +27,14 @@ public class ItemServiceImpl implements IItemService {
     private TbItemMapper tbItemMapper;
     @Autowired
     private TbItemDescMapper tbItemDescMapper;
+
+    /**
+     * 增加当发送消息逻辑
+     */
+    @Autowired
+    private JmsTemplate jmsTemplate;
+    @Autowired
+    private Destination topicDestination;
 
     @Override
     public EasyUIDataGridResult getItemList(int page, int rows) {
@@ -53,6 +64,14 @@ public class ItemServiceImpl implements IItemService {
         tbItemDesc.setUpdated(date);
         tbItemDesc.setItemDesc(desc);
         tbItemDescMapper.insert(tbItemDesc);
+        //消息发送
+        jmsTemplate.send(topicDestination, new MessageCreator() {
+            @Override
+            public Message createMessage(Session session) throws JMSException {
+                TextMessage textMessage = session.createTextMessage(itemId + "");
+                return textMessage;
+            }
+        });
         return TaotaoResult.ok();
     }
 }

@@ -9,4 +9,6 @@ public interface ISearchItemService {
     public TaotaoResult importAllItems() throws Exception;
 
     SearchResult search(String queryString, int page, int rows) throws Exception;
+
+    public TaotaoResult updateItemById(Long itemId) throws Exception;
 }

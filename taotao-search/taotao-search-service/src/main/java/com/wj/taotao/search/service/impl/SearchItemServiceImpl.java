@@ -89,4 +89,9 @@ public class SearchItemServiceImpl implements ISearchItemService {
         searchResult.setPageCount(pageCount);
         return searchResult;
     }
+
+    @Override
+    public TaotaoResult updateItemById(Long itemId) throws Exception {
+        return searchDao.upItemById(itemId);
+    }
 }

@@ -2,11 +2,14 @@ package com.wj.taotao.search.dao;
 
 import com.wj.taotao.common.SearchItem;
 import com.wj.taotao.common.SearchResult;
+import com.wj.taotao.common.TaotaoResult;
+import com.wj.taotao.search.mapper.SearchItemMapper;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
+import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -22,6 +25,9 @@ public class SearchDao {
 
     @Autowired
     private HttpSolrClient solrClient;
+
+    @Autowired
+    private SearchItemMapper searchItemMapper;
 
     public SearchResult search(SolrQuery solrQuery) throws Exception{
         QueryResponse queryResponse = solrClient.query(solrQuery);
@@ -50,5 +56,19 @@ public class SearchDao {
         result.setItemList(list);
         result.setRecordCount(results.getNumFound());
         return result;
+    }
+
+    public TaotaoResult upItemById(Long itemId) throws Exception {
+        SearchItem searchItem = searchItemMapper.getSearchItemByItemId(itemId);
+        SolrInputDocument doc = new SolrInputDocument();
+        doc.addField("id", searchItem.getId());
+        doc.addField("item_title", searchItem.getTitle());
+
+        //4.添加文档到索引库中
+        solrClient.add(doc);
+        //5.提交
+        solrClient.commit();
+        return TaotaoResult.ok();
+
     }
 }
