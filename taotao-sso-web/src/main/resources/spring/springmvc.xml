@@ -10,6 +10,8 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
     <context:component-scan base-package="com.wj.taotao.sso.controller" />
+    <context:property-placeholder location="classpath*:*/*.properties" />
+
     <mvc:annotation-driven />
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/jsp/" />
@@ -18,14 +20,9 @@
 
     <mvc:default-servlet-handler />
 
-    <!--上传文件-->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="defaultEncoding" value="UTF-8" />
-        <property name="maxUploadSize" value="5242880" />
-    </bean>
-
     <!--引入dubbo服务-->
-    <dubbo:application name="taotao-manager-web" />
+    <dubbo:application name="taotao-sso-web" />
     <dubbo:registry protocol="zookeeper" address="10.0.0.116:2181" />
     <dubbo:reference interface="com.taotao.sso.service.IUserRegisterService" id="userRegisterService" />
+    <dubbo:reference interface="com.taotao.sso.service.IUserLoginService" id="userLoginService" />
 </beans>
