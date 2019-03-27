@@ -69,7 +69,7 @@ public class UserRegisterServiceImpl implements IUserRegisterService {
             }
         }
 
-        user.setUpdated(new Date());
+        user.setCreated(new Date());
         user.setUpdated(user.getCreated());
         user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
         tbUserMapper.insertSelective(user);

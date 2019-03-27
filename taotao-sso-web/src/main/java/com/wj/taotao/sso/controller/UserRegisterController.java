@@ -29,6 +29,4 @@ public class UserRegisterController {
         return userRegisterService.register(user);
     }
 
-
-
 }

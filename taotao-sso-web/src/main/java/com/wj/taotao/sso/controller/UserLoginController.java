@@ -6,9 +6,7 @@ import com.wj.taotao.common.util.CookieUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +22,7 @@ public class UserLoginController {
 
     @RequestMapping(value = "user/login",method = RequestMethod.POST)
     @ResponseBody
-    public TaotaoResult login(String username, String password, HttpServletRequest request, HttpServletResponse response){
+    public TaotaoResult login(String username,String password, HttpServletRequest request, HttpServletResponse response){
         TaotaoResult result = userLoginService.login(username, password);
         //需要设置token到cookie中去，可以使用工具类，cookie需要跨域
         if(result.getStatus() == 200){
