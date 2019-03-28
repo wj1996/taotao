@@ -28,7 +28,7 @@ public class UserRegisterServiceImpl implements IUserRegisterService {
             }
             criteria.andUsernameEqualTo(param);
         }else if(type == 2){
-            criteria.andPhoneNotEqualTo(param);
+            criteria.andPhoneEqualTo(param);
         }else if(type == 3){
             criteria.andEmailEqualTo(param);
         }else{
