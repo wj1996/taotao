@@ -1,8 +1,10 @@
 package com.wj.taotao.sso.controller;
 
+import com.github.pagehelper.util.StringUtil;
 import com.taotao.sso.service.IUserLoginService;
 import com.wj.taotao.common.TaotaoResult;
 import com.wj.taotao.common.util.CookieUtils;
+import com.wj.taotao.common.util.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -32,10 +34,15 @@ public class UserLoginController {
         return result;
     }
 
-    @RequestMapping(value="user/token/{token}",method = RequestMethod.POST)
+    @RequestMapping(value="user/token/{token}",method = RequestMethod.GET)
     @ResponseBody
-    public TaotaoResult getUserByToken(@PathVariable String token) {
-        return userLoginService.getUserByToken(token);
+    public String getUserByToken(@PathVariable String token,String callback) {
+        TaotaoResult result = userLoginService.getUserByToken(token);
+        if (StringUtil.isNotEmpty(callback)) {
+            return callback + "(" + JsonUtils.objectToJson(result) + ")";
+        }
+
+        return JsonUtils.objectToJson(result);
     }
 
 
