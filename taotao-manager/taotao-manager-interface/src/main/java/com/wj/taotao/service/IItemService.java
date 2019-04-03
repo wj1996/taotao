@@ -9,4 +9,6 @@ public interface IItemService {
     EasyUIDataGridResult getItemList(int page,int rows);
 
     TaotaoResult saveItem(TbItem tbItem, String desc);
+
+    TbItem getItemById(Long itemId);
 }

@@ -74,4 +74,14 @@ public class ItemServiceImpl implements IItemService {
         });
         return TaotaoResult.ok();
     }
+
+    @Override
+    public TbItem getItemById(Long itemId) {
+        TbItemExample tbExample = new TbItemExample();
+        TbItemExample.Criteria criteria = tbExample.createCriteria();
+        criteria.andIdEqualTo(itemId);
+        List<TbItem> tbItems = tbItemMapper.selectByExample(tbExample);
+        if (null != tbItems && tbItems.size() > 0) return tbItems.get(0);
+        return null;
+    }
 }
