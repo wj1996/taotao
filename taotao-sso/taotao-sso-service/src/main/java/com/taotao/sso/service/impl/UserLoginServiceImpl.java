@@ -24,7 +24,7 @@ public class UserLoginServiceImpl implements IUserLoginService {
     private TbUserMapper userMapper;
 
     @Autowired
-    private Jedis jedisClient;
+    private JedisClient jedisClient;
 
     @Value("${USER_INFO}")
     private String USER_INFO;
@@ -72,18 +72,18 @@ public class UserLoginServiceImpl implements IUserLoginService {
     public void setKey(String key,String value){
         //增加失败重试2次机制
         int size = 0;
-        for (int i = 0;i < 2;i++) {
+        for (int i = 0;i < 3;i++) {
             try {
                 size++;
                 write(key,value);
                 break;
             } catch (Exception e) {
                 if (i == 2) {
-                    System.out.println("写入缓存失败，失败原因：" + e.getStackTrace());
+                    System.out.println("写入缓存失败，失败原因：" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
         }
-        System.out.println("尝试写入缓存次数：" + size);
     }
 
     public void write(String key,String value) throws Exception{

@@ -19,8 +19,8 @@ public class ContentServiceImpl implements IContentService {
 
     @Autowired
     private TbContentMapper tbContentMapper;
-    @Autowired
-    private JedisClient jedisClient;
+    /*@Autowired
+    private JedisClient jedisClient;*/
 
     @Value("${CONTENT_KEY}")
     private String CONTENT_KEY;
@@ -32,24 +32,24 @@ public class ContentServiceImpl implements IContentService {
         //添加缓存不能影响正常的业务逻辑(所有涉及到缓存的业务操作必须try_catch处理异常)
 
         //先从缓存中获取数据
-        try {
+       /* try {
             String jsonStr = jedisClient.hget(CONTENT_KEY, cid + "");
             if(StringUtils.isNotBlank(jsonStr)){
                 return JsonUtils.jsonToList(jsonStr,TbContent.class);
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
 
         TbContentExample tbContentExample = new TbContentExample();
         TbContentExample.Criteria criteria = tbContentExample.createCriteria();
         criteria.andCategoryIdEqualTo(cid);
         List<TbContent> list = tbContentMapper.selectByExample(tbContentExample);
-        try {
+       /* try {
             jedisClient.hset(CONTENT_KEY,cid + "", JsonUtils.objectToJson(list));
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         return list;
     }
 
