@@ -29,6 +29,5 @@
     <dubbo:application name="taotao-sso-web" />
     <dubbo:registry protocol="zookeeper" address="10.0.0.116:2181" />
     <dubbo:reference interface="com.taotao.sso.service.IUserLoginService" id="userLoginService" />
-    <dubbo:reference interface="com.wj.taotao.cart.service" id="cartService" />
     <dubbo:reference interface="com.wj.taotao.service.IItemService" id="itemService" />
 </beans>

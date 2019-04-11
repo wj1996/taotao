@@ -22,6 +22,7 @@
         <module>taotao-order-web</module>
         <module>taotao-cart</module>
         <module>taotao-cart-web</module>
+        <module>taotao-item-web</module>
     </modules>
 
     <build>

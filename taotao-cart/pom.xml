@@ -15,22 +15,5 @@
         <module>taotao-cart-interface</module>
         <module>taotao-cart-service</module>
     </modules>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <!-- 新增配置 -->
-                <configuration>
-                    <port>9099</port>
-                    <!-- 项目路径 -->
-                    <path>/</path>
-                    <!-- 编码 -->
-                    <uriEncoding>utf-8</uriEncoding>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
